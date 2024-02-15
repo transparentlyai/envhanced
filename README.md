@@ -63,6 +63,18 @@ Priority Order:
     i.e. `cfg = Config(defaults="new.defaults.env", environ="DEVDIR/dev.env", secrets="secrets.env")`
     in this case, the `environ.env` file will be loaded from the `DEVDIR` directory and the rest from the current directory and defaults has a different name. 
     Note that the path is relative to the `pwd` parameter so do not start with a `/` or `./` or `../`.
+- multiline json strings are accepted. for example:
+```
+  QUANTILES='{
+    "1": {"name": "Very Low Risk", "color": "#51C2A7"},
+    "2": {"name": "Low Risk", "color": "#5AAE64"},
+    "3": {"name": "Investigate Further", "color": "#D4C638"},
+    "4": {"name": "High Caution", "color": "#E67927"},
+    "5": {"name": "Extreme Care", "color": "#CD5E5C"}
+}'
+```
+Note that it needs to be a valid json string.(i.e all names are in "" and no comma at the last item)
+- true and false (in smallcase) are converted into a bool True or False
 
 
 

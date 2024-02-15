@@ -13,7 +13,7 @@ class Config:
 
     def __init__(
         self,
-        pwd: str = ".",
+        cwd: str = ".",
         defaults: str = "defaults.env",
         environ: str = "environ.env",
         secrets: str = "secrets.env",
@@ -27,9 +27,9 @@ class Config:
             environ (str, optional): The filename of the environment variables file. Defaults to "environ.env".
             secrets (str, optional): The filename of the secrets file. Defaults to "secrets.env".
         """
-        self.defaults_path = f"{pwd}/{defaults}"
-        self.environ_path = f"{pwd}/{environ}"
-        self.secrets_path = f"{pwd}/{secrets}"
+        self.defaults_path = f"{cwd}/{defaults}"
+        self.environ_path = f"{cwd}/{environ}"
+        self.secrets_path = f"{cwd}/{secrets}"
         self.reload()
 
     def reload(self):
@@ -63,4 +63,8 @@ class Config:
         # If the value is a JSON, parse it
         if value and (value.startswith("[") or value.startswith("{")):
             return json.loads(value)
+        if value == 'True':
+            return True
+        if value == 'False':
+            return False
         return value
