@@ -12,8 +12,8 @@ from envhanced import Config
 cfg = Config()
 
 server_ip = cfg.IP_ADDRESS # from enviroment variable
-app_name = cfg.APP_NAME # from defaults.env file
-db_host = cfg.DB_HOST # default value from the environ.env file
+app_name = cfg.APP_NAME # default value from defaults.env file
+db_host = cfg.DB_HOST # from the environ.env file
 api_key = cfg.API_KEY # from the secrets.env file
 user = cfg.USER # from the secrets.env file
 password = cfg.PASSWORD # from the secrets.env file
@@ -36,7 +36,7 @@ Priority Order:
     - Contains sensitive information and secrets.
     - Overrides settings in `environ.env` and `defaults.env`.
     - Overridden by environment variables.
-    - Should NOT be under source control. (!! Add to .gitignore !!)
+    - Should NOT be under source control. (!! Add to .gitignore !!) i.e add `*secret*` to ignore any file with the word seceret in its name 
 
 3. environ.env:
     - Third level of priority.
