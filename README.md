@@ -59,7 +59,7 @@ Priority Order:
 - All values can be accessed as attributes of the Config instance. i.e. `cfg.DB_HOST`, `cfg.API_KEY`, etc.
 - The Config object can be initialized with a different directory path to load the environment files from a different location. i.e. `cfg = Config(pwd="/path/to/env/files")`.
     You may want to do this if you have a different directories containing separate configurations for each environment (e.g. dev, test, prod).
-- Alternatively, you can specify the path for each environment file individually (the path is relative to pwd). 
+- Alternatively, you can specify the path for each environment file individually (the path is relative to `.` ). 
     i.e. `cfg = Config(defaults="new.defaults.env", environ="DEVDIR/dev.env", secrets="secrets.env")`
     in this case, the `environ.env` file will be loaded from the `DEVDIR` directory and the rest from the current directory and defaults has a different name. 
     Note that the path is relative to the `pwd` parameter so do not start with a `/` or `./` or `../`.

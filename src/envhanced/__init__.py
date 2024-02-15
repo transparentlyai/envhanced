@@ -14,9 +14,9 @@ class Config:
     def __init__(
         self,
         cwd: str = ".",
-        defaults: str = "defaults.env",
-        environ: str = "environ.env",
-        secrets: str = "secrets.env",
+        defaults: str = None,
+        environ: str = None,
+        secrets: str = None,
     ):
         """
         Initialize the Config object.
@@ -27,9 +27,9 @@ class Config:
             environ (str, optional): The filename of the environment variables file. Defaults to "environ.env".
             secrets (str, optional): The filename of the secrets file. Defaults to "secrets.env".
         """
-        self.defaults_path = f"{cwd}/{defaults}"
-        self.environ_path = f"{cwd}/{environ}"
-        self.secrets_path = f"{cwd}/{secrets}"
+        self.defaults_path = defaults or f"{cwd}/{defaults}"
+        self.environ_path = environ or f"{cwd}/{environ}"
+        self.secrets_path = secrets or f"{cwd}/{secrets}"
         self.reload()
 
     def reload(self):
