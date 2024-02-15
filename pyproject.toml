@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0", "python-dotenv"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "envhanced"
+version = "0.0.1"
+authors = [
+  { name="Mauro Sauco", email="mauro@transparently.ai" },
+]
+description = "A simple library to manage environment variables, defaults configuration and different environments"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Linux",
+]
+
+[project.urls]
+Homepage = "https://github.com/transparentlyai/envhanced"
+Issues = "https://github.com/transparentlyai/envhanced/issues"
