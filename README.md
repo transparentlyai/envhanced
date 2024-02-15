@@ -11,6 +11,7 @@ from envhanced import Config
 
 cfg = Config()
 
+server_ip = cfg.IP_ADDRESS # from enviroment variable
 app_name = cfg.APP_NAME # from defaults.env file
 db_host = cfg.DB_HOST # default value from the environ.env file
 api_key = cfg.API_KEY # from the secrets.env file
