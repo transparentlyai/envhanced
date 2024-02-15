@@ -63,8 +63,8 @@ class Config:
         # If the value is a JSON, parse it
         if value and (value.startswith("[") or value.startswith("{")):
             return json.loads(value)
-        if value == 'True':
+        if value == 'true':
             return True
-        if value == 'False':
+        if value == 'false':
             return False
         return value
