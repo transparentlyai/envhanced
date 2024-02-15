@@ -27,13 +27,9 @@ class Config:
             environ (str, optional): The filename of the environment variables file. Defaults to "environ.env".
             secrets (str, optional): The filename of the secrets file. Defaults to "secrets.env".
         """
-        defaults_path = f"{pwd}/{defaults}"
-        environ_path = f"{pwd}/{environ}"
-        secrets_path = f"{pwd}/{secrets}"
-        self.defaults = dotenv_values(defaults_path)
-        self.environ = dotenv_values(environ_path)
-        self.secrets = dotenv_values(secrets_path)
-        self.env_vars = dict(os.environ)
+        self.defaults_path = f"{pwd}/{defaults}"
+        self.environ_path = f"{pwd}/{environ}"
+        self.secrets_path = f"{pwd}/{secrets}"
         self.reload()
 
     def reload(self):
@@ -42,6 +38,10 @@ class Config:
         The 'values' dictionary is updated by merging the default values, environment variables,
         secrets, and additional environment variables.
         """
+        self.defaults = dotenv_values(self.defaults_path)
+        self.environ = dotenv_values(self.environ_path)
+        self.secrets = dotenv_values(self.secrets_path)
+        self.env_vars = dict(os.environ)
         self.values = {**self.defaults, **self.environ, **self.secrets, **self.env_vars}
     
     def __getattr__(self, name):

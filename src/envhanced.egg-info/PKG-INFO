@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: envhanced
-Version: 0.0.2
+Version: 0.0.3
 Summary: A simple library to manage environment variables, defaults configuration and different environments
 Author-email: Mauro Sauco <mauro@transparently.ai>
 Project-URL: Homepage, https://github.com/transparentlyai/envhanced
@@ -11,6 +11,7 @@ Classifier: Operating System :: OS Linux
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: python-dotenv
 
 
 # Envhanced
