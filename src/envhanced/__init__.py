@@ -14,9 +14,9 @@ class Config:
     def __init__(
         self,
         cwd: str = ".",
-        defaults: str = None,
-        environ: str = None,
-        secrets: str = None,
+        defaults: str = '',
+        environ: str = '',
+        secrets: str = '',
     ):
         """
         Initialize the Config object.
@@ -27,9 +27,9 @@ class Config:
             environ (str, optional): The filename of the environment variables file. Defaults to "environ.env".
             secrets (str, optional): The filename of the secrets file. Defaults to "secrets.env".
         """
-        self.defaults_path = defaults or f"{cwd}/{defaults}"
-        self.environ_path = environ or f"{cwd}/{environ}"
-        self.secrets_path = secrets or f"{cwd}/{secrets}"
+        self.defaults_path = defaults or f"{cwd}/defaults.env"
+        self.environ_path = environ or f"{cwd}/environ.env"
+        self.secrets_path = secrets or f"{cwd}/secrets.env"
         self.reload()
 
     def reload(self):
@@ -43,28 +43,16 @@ class Config:
         self.secrets = dotenv_values(self.secrets_path)
         self.env_vars = dict(os.environ)
         self.values = {**self.defaults, **self.environ, **self.secrets, **self.env_vars}
-    
-    def __getattr__(self, name):
-        """
-        Retrieves the value of a configuration setting by its name.
 
-        Args:
-            name (str): The name of the configuration setting.
-
-        Returns:
-            The value of the configuration setting.
-
-        Raises:
-            AttributeError: If the configuration setting doesn't exist.
-        """
-        value = self.values.get(name)
-        if value is None:
-            raise AttributeError(f"Configuration setting '{name}' does not exist.")
-        # If the value is a JSON, parse it
-        if value and (value.startswith("[") or value.startswith("{")):
-            return json.loads(value)
-        if value == 'true':
-            return True
-        if value == 'false':
-            return False
-        return value
+        # Set the configuration settings as attributes for language server 
+        # autocompletion instedd of retriving at __getattr__
+        for key, value in self.values.items():
+            # If the value is a JSON, parse it
+            if value and (value.startswith("[") or value.startswith("{")):
+                value=json.loads(value)
+            # If the value is a boolean, parse it
+            if value == 'true':
+                value= True
+            if value == 'false':
+                value = False
+            setattr(self, key, value)
