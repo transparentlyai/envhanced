@@ -25,18 +25,19 @@ The files are loaded in a specific order of priority, ensuring that the most cri
 and environment-specific settings are applied correctly.
 
 Priority Order:
-0. Environment Variables:
+
+1. Environment Variables:
     - Highest priority.
     - Overrides all settings in all environment files.
 
-1. secrets.env:
+2. secrets.env:
     - Second-highest priority.
     - Contains sensitive information and secrets.
     - Overrides settings in `environ.env` and `defaults.env`.
     - Overridden by environment variables.
     - Should NOT be under source control. (!! Add to .gitignore !!)
 
-2. environ.env:
+3. environ.env:
     - Third level of priority.
     - Typically holds environment-specific settings (useful for development/testing envs).
     - Overrides settings in `config.env`.
@@ -44,7 +45,7 @@ Priority Order:
     - Acceps json values as strings.
     - It can be under source control.
 
-3. defaults.env:
+4. defaults.env:
     - Lowest priority.
     - Contains default settings.
     - Overridden by `local.env`, `secrets.env`, and environment variables.
