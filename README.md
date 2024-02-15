@@ -27,8 +27,8 @@ and environment-specific settings are applied correctly.
 Priority Order:
 
 1. Environment Variables:
-    - Highest priority.
-    - Overrides all settings in all environment files.
+   - Highest priority.
+   - Overrides all settings in all environment files.
 
 2. secrets.env:
     - Second-highest priority.
