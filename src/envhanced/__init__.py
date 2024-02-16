@@ -57,4 +57,35 @@ class Config:
                 value = True
             if value == "false" or value == "False":
                 value = False
+            # If the value is a string, parse it to a number if possible
+            if type(value) == str:
+                value = convert_string_to_num(value)
             setattr(self, key, value)
+
+
+def convert_string_to_num(value: str):
+    """
+    Converts a string to a numeric value.
+
+    If the string can be converted to an integer, the integer value is returned.
+    If the string can be converted to a float, the float value is returned.
+    If the string cannot be converted to a numeric value, the original string is returned.
+
+    Args:
+        value (str): The string to be converted.
+
+    Returns:
+        int or float or str: The converted numeric value or the original string.
+    """
+    try:
+        return int(value)
+    except ValueError:
+        pass
+    
+    # Try to convert to float
+    try:
+        return float(value)
+    except ValueError:
+        pass
+    
+    return value
