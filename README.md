@@ -76,5 +76,30 @@ Priority Order:
 Note that it needs to be a valid json string.(i.e all names are in "" and no comma at the last item)
 - true and false (in smallcase) are converted into a bool True or False
 
+- is advisable to inititate the Config object ones and use it across all your other files. one way of doing this is to create a config.py file and load the initialized object from there:
+  example: 
+`config.py`  
+```python  
+import os
+from envhanced import Config
+
+ENV = os.environ["ENV"]
+cfg = Config(
+    defaults="config/defaults.env",
+    environ=f"config/{ENV}-env/environ.env",
+    secrets=f"config/{ENV}-env/secrets.env",
+)
+```
+then on all your py files:
+```python 
+from config inmport cfg
+
+server_ip = cfg.IP_ADDRESS # from enviroment variable
+app_name = cfg.APP_NAME # default value from defaults.env file
+db_host = cfg.DB_HOST # from the environ.env file
+api_key = cfg.API_KEY # from the secrets.env file
+user = cfg.USER # from the secrets.env file
+password = cfg.PASSWORD # from the secrets.env file
+```
 
 
