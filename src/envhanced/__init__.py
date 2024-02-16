@@ -14,9 +14,9 @@ class Config:
     def __init__(
         self,
         cwd: str = ".",
-        defaults: str = '',
-        environ: str = '',
-        secrets: str = '',
+        defaults: str = "",
+        environ: str = "",
+        secrets: str = "",
     ):
         """
         Initialize the Config object.
@@ -44,15 +44,15 @@ class Config:
         self.env_vars = dict(os.environ)
         self.values = {**self.defaults, **self.environ, **self.secrets, **self.env_vars}
 
-        # Set the configuration settings as attributes for language server 
+        # Set the configuration settings as attributes for language server
         # autocompletion instedd of retriving at __getattr__
         for key, value in self.values.items():
             # If the value is a JSON, parse it
             if value and (value.startswith("[") or value.startswith("{")):
-                value=json.loads(value)
+                value = json.loads(value)
             # If the value is a boolean, parse it
-            if value.lower() == 'true':
-                value= True
-            if value.lower() == 'false':
+            if value == "true" or value == "True":
+                value = True
+            if value == "false" or value == "False":
                 value = False
             setattr(self, key, value)
