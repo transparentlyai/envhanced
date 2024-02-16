@@ -51,8 +51,8 @@ class Config:
             if value and (value.startswith("[") or value.startswith("{")):
                 value=json.loads(value)
             # If the value is a boolean, parse it
-            if value == 'true':
+            if value.lower() == 'true':
                 value= True
-            if value == 'false':
+            if value.lower() == 'false':
                 value = False
             setattr(self, key, value)
