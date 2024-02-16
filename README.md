@@ -1,6 +1,6 @@
 # Envhanced
 
-Envhanced is a powerful and intuitive configuration management library designed to facilitate the seamless integration of configuration files and environment variables into your Python applications. It enables easy access to configurations across different environments, handling secrets, and default configurations with ease.
+Envhanced a simple, yet effective and intuitive, configuration management library designed to facilitate the seamless integration of configuration files and environment variables into your Python applications. It enables easy access to configurations across different environments, handling secrets, and default configurations with ease.
 
 ## Example Usage
 
