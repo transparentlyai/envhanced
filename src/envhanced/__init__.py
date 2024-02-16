@@ -17,6 +17,7 @@ class Config:
         defaults: str = "",
         environ: str = "",
         secrets: str = "",
+        additional: dict = {},
     ):
         """
         Initialize the Config object.
@@ -27,6 +28,7 @@ class Config:
             environ (str, optional): The filename of the environment variables file. Defaults to "environ.env".
             secrets (str, optional): The filename of the secrets file. Defaults to "secrets.env".
         """
+        self.additional = additional
         self.defaults_path = defaults or f"{cwd}/defaults.env"
         self.environ_path = environ or f"{cwd}/environ.env"
         self.secrets_path = secrets or f"{cwd}/secrets.env"
@@ -42,7 +44,7 @@ class Config:
         self.environ = dotenv_values(self.environ_path)
         self.secrets = dotenv_values(self.secrets_path)
         self.env_vars = dict(os.environ)
-        self.values = {**self.defaults, **self.environ, **self.secrets, **self.env_vars}
+        self.values = {**self.defaults, **self.environ, **self.secrets, **self.env_vars, **self.additional}
 
         # Set the configuration settings as attributes for language server
         # autocompletion instedd of retriving at __getattr__
