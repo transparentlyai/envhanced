@@ -67,3 +67,6 @@ app_name = cfg.APP_NAME    # Default value from defaults.env file
 ```
 
 This approach simplifies configuration management across your application, ensuring consistency and ease of updates.
+
+## Install 
+`pip install envhanced@git+https://github.com/transparentlyai/envhanced.git`
