@@ -49,6 +49,15 @@ import os
 from envhanced import Config
 
 ENV = os.environ["ENV"]
+cfg = Config()
+```
+#### If you have multiple configuration environments you could configure as follows:
+```python
+import os
+from envhanced import Config
+
+#ENV is an environement variable containing the name of the config
+ENV = os.environ["ENV"]
 cfg = Config(
     defaults="config/defaults.env",
     environ=f"config/{ENV}-env/environ.env",
