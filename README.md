@@ -8,7 +8,6 @@ To use Envhanced, simply import the `Config` class and access your configuration
 
 ```python
 from envhanced import Config
-
 cfg = Config()
 
 # Accessing configurations:
@@ -46,10 +45,8 @@ Envhanced prioritizes configuration sources to ensure that the most critical and
 Create a `config.py` file for a centralized configuration object:
 
 ```python
-import os
 from envhanced import Config
 
-ENV = os.environ["ENV"]
 cfg = Config()
 ```
 #### If you have multiple configuration environments you could configure as follows:
