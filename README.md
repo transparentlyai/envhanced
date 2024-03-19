@@ -39,6 +39,7 @@ Envhanced prioritizes configuration sources to ensure that the most critical and
 - **Multiline JSON Strings:** Supported for complex configurations. Ensure valid JSON formatting.
 - **Boolean Conversion:** Strings `true` and `false` are converted to `True` and `False` respectively.
 - **Centralized Configuration:** It's advisable to instantiate the `Config` object once and import it across your application for consistency and ease of management.
+- **ADD sectrets to gitignore** 
 
 ### Example: Centralized Configuration
 
