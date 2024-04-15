@@ -32,6 +32,7 @@ class Config:
         self.defaults_path = defaults or f"{cwd}/defaults.env"
         self.environ_path = environ or f"{cwd}/environ.env"
         self.secrets_path = secrets or f"{cwd}/secrets.env"
+        self.secrets_path = secrets or f"{cwd}.secrets.env"
         self.reload()
 
     def reload(self):
