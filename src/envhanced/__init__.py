@@ -49,9 +49,11 @@ class Config:
         # Set the configuration settings as attributes for language server
         # autocompletion instedd of retriving at __getattr__
         for key, value in self.values.items():
-            # If the value is a JSON, parse it
-            if value and (value.startswith("[") or value.startswith("{")):
+            # attemt to covert string to json
+            try:
                 value = json.loads(value)
+            except:
+                pass
             # If the value is a boolean, parse it
             if value == "true" or value == "True":
                 value = True
