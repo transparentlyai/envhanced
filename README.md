@@ -73,6 +73,15 @@ app_name = cfg.APP_NAME    # Default value from defaults.env file
 # ... and so on
 ```
 
+#### Adding additional variables
+
+Anny additional parameters passed will be added as a new variable
+example:
+```python
+basedir = os.path.abspath(os.path.dirname(__file__))
+cfg = Config(BASEDIR=basedir)
+```
+
 This approach simplifies configuration management across your application, ensuring consistency and ease of updates.
 
 ## Install 

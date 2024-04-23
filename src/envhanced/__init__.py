@@ -17,7 +17,7 @@ class Config:
         defaults: str = "",
         environ: str = "",
         secrets: str = "",
-        additional: dict = {},
+        **additional,
     ):
         """
         Initialize the Config object.
