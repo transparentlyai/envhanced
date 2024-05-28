@@ -13,25 +13,45 @@ class Config:
 
     def __init__(
         self,
-        cwd: str = ".",
+        path: str = ".",
         defaults: str = "",
         environ: str = "",
         secrets: str = "",
         **additional,
     ):
         """
-        Initialize the Config object.
+            Initialize the Config object.
 
-        Args:
-            pwd (str, optional): The working directory path. Defaults to ".".
-            defaults (str, optional): The filename of the defaults file. Defaults to "defaults.env".
-            environ (str, optional): The filename of the environment variables file. Defaults to "environ.env".
-            secrets (str, optional): The filename of the secrets file. Defaults to "secrets.env".
+            This class loads configuration values from various sources, including:
+
+            * **Defaults:** Values defined in a file named `defaults.env` located in the specified `path`.
+            * **Environment:** Values defined in a file named `environ.env` located in the specified `path`.
+            * **Secrets:** Values defined in a file named `secrets.env` located in the specified `path`.
+            * **Additional:** Values provided as keyword arguments to the constructor.
+
+            **Important Note:**
+
+            * The `path` argument specifies the base directory where the configuration files are located.
+            * If the provided paths for `defaults`, `environ`, and `secrets` are not absolute, they are treated as relative to the specified `path`.
+            * If no `path` is provided, the current working directory is used as the base directory.
+            ```python
+                # Initialize the Config object with default settings
+                config = Config()
+
+                # Initialize the Config object with custom paths and additional values
+                config = Config(
+                    path="/path/to/config",
+                    defaults="custom_defaults.env",
+                    environ="custom_environ.env",
+                    secrets="custom_secrets.env",
+                    my_custom_value="my_value"
+                )
+            ```
         """
         self.additional = additional
-        self.defaults_path = defaults or f"{cwd}/defaults.env"
-        self.environ_path = environ or f"{cwd}/environ.env"
-        self.secrets_path = secrets or f"{cwd}/secrets.env"
+        self.defaults_path = defaults or f"{path}/defaults.env"
+        self.environ_path = environ or f"{path}/environ.env"
+        self.secrets_path = secrets or f"{path}/secrets.env"
         self.reload()
 
     def reload(self):
@@ -44,7 +64,13 @@ class Config:
         self.environ = dotenv_values(self.environ_path)
         self.secrets = dotenv_values(self.secrets_path)
         self.env_vars = dict(os.environ)
-        self.values = {**self.defaults, **self.environ, **self.secrets, **self.env_vars, **self.additional}
+        self.values = {
+            **self.defaults,
+            **self.environ,
+            **self.secrets,
+            **self.env_vars,
+            **self.additional,
+        }
 
         # Set the configuration settings as attributes for language server
         # autocompletion instedd of retriving at __getattr__
@@ -83,11 +109,11 @@ def convert_string_to_num(value: str):
         return int(value)
     except ValueError:
         pass
-    
+
     # Try to convert to float
     try:
         return float(value)
     except ValueError:
         pass
-    
+
     return value
